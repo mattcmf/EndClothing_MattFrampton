@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">EndClothing_MattFrampton</string>
+    <string name="product_not_found">Product not found</string>
+    <string name="product_price_not_found">Product price not found</string>
+    <string name="banner_content">NEW  THIS  WEEK</string>
+</resources>
