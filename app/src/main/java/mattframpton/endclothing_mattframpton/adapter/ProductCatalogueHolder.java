@@ -1,4 +1,4 @@
-package mattframpton.endclothing_mattframpton.Adapter;
+package mattframpton.endclothing_mattframpton.adapter;
 
 
 import android.support.v7.widget.RecyclerView;

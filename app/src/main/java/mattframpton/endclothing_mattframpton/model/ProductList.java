@@ -1,4 +1,4 @@
-package mattframpton.endclothing_mattframpton.Model;
+package mattframpton.endclothing_mattframpton.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

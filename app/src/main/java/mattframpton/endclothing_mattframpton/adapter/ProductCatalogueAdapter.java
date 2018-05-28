@@ -1,4 +1,4 @@
-package mattframpton.endclothing_mattframpton.Adapter;
+package mattframpton.endclothing_mattframpton.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-import mattframpton.endclothing_mattframpton.Model.Product;
+import mattframpton.endclothing_mattframpton.model.Product;
 import mattframpton.endclothing_mattframpton.R;
 
 public class ProductCatalogueAdapter extends RecyclerView.Adapter<ProductCatalogueHolder>{
