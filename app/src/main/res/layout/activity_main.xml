@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_light_background"
-    tools:context="mattframpton.endclothing_mattframpton.view.MainActivity">
+    tools:context="mattframpton.endclothing_mattframpton.view.ShopFrontActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

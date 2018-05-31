@@ -1,7 +1,9 @@
 package mattframpton.endclothing_mattframpton.di.modules
 
+import IdlingResources
 import dagger.Module
 import dagger.Provides
+import mattframpton.endclothing_mattframpton.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
@@ -13,9 +15,13 @@ class NetworkModule {
     @Singleton
     @Provides
     fun okHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return OkHttpClient.Builder()
+        val client = OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .build()
+        if (BuildConfig.DEBUG) {
+            IdlingResources.registerOkHttp(client)
+        }
+        return client
     }
 
     @Singleton

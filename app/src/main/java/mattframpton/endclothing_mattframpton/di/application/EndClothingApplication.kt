@@ -2,7 +2,6 @@ package mattframpton.endclothing_mattframpton.di.application
 
 import android.app.Application
 import mattframpton.endclothing_mattframpton.di.components.DaggerEndClothingApplicationComponent
-
 import mattframpton.endclothing_mattframpton.network.EndClothingService
 
 class EndClothingApplication : Application() {

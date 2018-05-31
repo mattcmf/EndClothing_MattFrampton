@@ -8,13 +8,9 @@ import mattframpton.endclothing_mattframpton.R
 import mattframpton.endclothing_mattframpton.model.Product
 import java.util.*
 
-class ProductCatalogueAdapter(data: ArrayList<*>) : RecyclerView.Adapter<ProductCatalogueHolder>() {
+class ProductCatalogueAdapter(data: ArrayList<Product>) : RecyclerView.Adapter<ProductCatalogueHolder>() {
 
-    internal var productList: ArrayList<Product>
-
-    init {
-        this.productList = data as ArrayList<Product>
-    }
+    private var productList: ArrayList<Product> = data
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCatalogueHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.lineitem, parent, false)

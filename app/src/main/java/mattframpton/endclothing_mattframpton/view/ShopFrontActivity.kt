@@ -6,30 +6,34 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import mattframpton.endclothing_mattframpton.R
-import mattframpton.endclothing_mattframpton.adapter.ProductCatalogueAdapter
 import mattframpton.endclothing_mattframpton.di.application.EndClothingApplication
-import mattframpton.endclothing_mattframpton.model.Product
-import mattframpton.endclothing_mattframpton.network.EndClothingService
+import mattframpton.endclothing_mattframpton.presenter.ShopFrontPresenter
 import timber.log.Timber
-import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class ShopFrontActivity : AppCompatActivity(), ShopFrontContract.View  {
 
+    private var presenter: ShopFrontContract.Presenter? = null
     private lateinit var mRecyclerView: RecyclerView
-    internal lateinit var data: ArrayList<Product>
-    private lateinit var adapter: RecyclerView.Adapter<*>
+
+    override val getHomePageRecyclerView: RecyclerView
+        get() = mRecyclerView
+
+    override fun setPresenter(shopFrontPresenter: ShopFrontPresenter) {
+        this.presenter = kotlin.checkNotNull(shopFrontPresenter)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        presenter = ShopFrontPresenter(this)
+
         val client = (application as EndClothingApplication).endClothingService
         val context = this
         Timber.plant(Timber.DebugTree())
         initViews(context)
-        if (client != null) requestData(client) else Timber.e("Error loading client")
+        if (client != null) presenter?.requestData(client) else
+            Timber.e("Error loading client")
     }
 
     private fun initViews(context: Context) {
@@ -38,17 +42,5 @@ class MainActivity : AppCompatActivity() {
         val manager = GridLayoutManager(context, 2)
         mRecyclerView.layoutManager = manager
     }
-
-    private fun requestData(client: EndClothingService) {
-        client.json
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ myData ->
-                    data = ArrayList(myData.products)
-                    adapter = ProductCatalogueAdapter(data)
-                    mRecyclerView.adapter = adapter
-                }) { throwable ->
-                    // handle error event
-                }
-    }
 }
+
